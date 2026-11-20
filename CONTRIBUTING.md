@@ -4,7 +4,7 @@
 
 # Guía de contribución
 
-Normas de trabajo del repositorio: ramas, commits y Pull Requests. Las hacen cumplir los rulesets de GitHub y la acción **PR checks**.
+Normas de trabajo del repositorio: ramas, commits y Pull Requests. Las hacen cumplir los rulesets de GitHub y las acciones de GitHub Actions.
 
 ## Ramas
 
@@ -22,7 +22,7 @@ Cada persona trabaja únicamente en su rama `feature`. Esas ramas no se borran n
 1. Actualiza tu rama con los últimos cambios de `develop`.
 2. Haz commits pequeños en tu rama y súbelos.
 3. Abre una Pull Request de tu rama a `develop` y rellena la plantilla (Summary, Changes y Notes).
-4. Asígnate la PR y comprueba que **Check conventions** está en verde.
+4. Asígnate la PR y comprueba que **Validate commits** y **Validate PR title** están en verde.
 5. El propietario del repositorio mergea con **Create a merge commit**.
 6. Al terminar el trabajo, una única PR de `develop` a `main`.
 
@@ -47,11 +47,14 @@ Un propósito por commit y por PR.
 
 ## Comprobación automática
 
-La acción **PR checks** revisa cada Pull Request hacia `develop` o `main`:
+Dos acciones de GitHub Actions revisan las Pull Requests:
 
-- Hacia `develop` solo se acepta desde `feature/pablo` o `feature/alvaro`.
-- Hacia `main` solo se acepta desde `develop`.
-- El título de la PR y todos sus commits deben seguir Conventional Commits.
+| Acción | Job | Qué comprueba |
+|---|---|---|
+| **Commit messages** | `Validate commits` | Que todos los commits de la PR sigan Conventional Commits. Solo en PRs hacia `develop`. |
+| **PR title** | `Validate PR title` | Que el título de la PR siga Conventional Commits. |
+
+De dónde sale cada PR (solo desde `feature/pablo` o `feature/alvaro` hacia `develop`, y solo desde `develop` hacia `main`) es una norma del equipo: no la comprueba ninguna acción.
 
 ## Estilo de archivos
 
