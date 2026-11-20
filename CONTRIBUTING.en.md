@@ -4,7 +4,7 @@
 
 # Contributing guide
 
-Working rules for the repository: branches, commits and Pull Requests. They are enforced by GitHub rulesets and the **PR checks** action.
+Working rules for the repository: branches, commits and Pull Requests. They are enforced by GitHub rulesets and GitHub Actions workflows.
 
 ## Branches
 
@@ -22,7 +22,7 @@ Each person works only on their own `feature` branch. These branches are never d
 1. Update your branch with the latest changes from `develop`.
 2. Make small commits on your branch and push them.
 3. Open a Pull Request from your branch to `develop` and fill in the template (Summary, Changes and Notes).
-4. Assign the PR to yourself and make sure **Check conventions** is green.
+4. Assign the PR to yourself and make sure **Validate commits** and **Validate PR title** are green.
 5. The repository owner merges using **Create a merge commit**.
 6. When the work is finished, open a single PR from `develop` to `main`.
 
@@ -47,11 +47,14 @@ One purpose per commit and per PR.
 
 ## Automated checks
 
-The **PR checks** action reviews every Pull Request to `develop` or `main`:
+Two GitHub Actions workflows review Pull Requests:
 
-- Pull Requests to `develop` are only accepted from `feature/pablo` or `feature/alvaro`.
-- Pull Requests to `main` are only accepted from `develop`.
-- The PR title and all its commits must follow Conventional Commits.
+| Workflow | Job | What it checks |
+|---|---|---|
+| **Commit messages** | `Validate commits` | That every commit in the PR follows Conventional Commits. Only for PRs to `develop`. |
+| **PR title** | `Validate PR title` | That the PR title follows Conventional Commits. |
+
+Where each PR comes from (only from `feature/pablo` or `feature/alvaro` into `develop`, and only from `develop` into `main`) is a team rule: no workflow enforces it.
 
 ## File style
 
