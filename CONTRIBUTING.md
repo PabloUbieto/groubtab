@@ -1,60 +1,58 @@
+<p align="center">
+  <b>Español</b> | <a href="CONTRIBUTING.en.md">English</a>
+</p>
+
 # Guía de contribución
 
-Normas que seguimos para trabajar en Grupay. Si algo no está aquí, lo hablamos antes de hacerlo.
+Normas de trabajo del repositorio: ramas, commits y Pull Requests. Las hacen cumplir los rulesets de GitHub y la acción **PR checks**.
 
-## 🌳 Ramas principales
+## Ramas
 
-| Rama | Contenido |
+| Rama | Uso |
 |---|---|
-| `main` | Versión final del proyecto. Bloqueada hasta la entrega |
-| `develop` | Rama de trabajo donde se integra todo |
+| `main` | Entrega final. Está bloqueada y no se toca hasta la entrega. |
+| `develop` | Integración. Es la rama por defecto y solo cambia mediante Pull Request. |
+| `feature/pablo` | Rama de trabajo de Pablo. |
+| `feature/alvaro` | Rama de trabajo de Álvaro. |
 
-- No se trabaja directamente en `main` ni en `develop`.
-- Todo cambio entra por **Pull Request** y se revisa antes de mergear.
-- Solo Pablo mergea las PR. GitHub bloquea a los demás.
-- **Un propósito por PR.** Si se arregla un bug y se añade una pantalla, son dos PR.
-- Antes de borrar, mover o renombrar archivos o carpetas, o de tocar la configuración del repo, lo hablamos.
-- Nunca se suben contraseñas, claves de API ni archivos `.env`.
+Cada persona trabaja únicamente en su rama `feature`. Esas ramas no se borran ni se reescriben: no hay force push.
 
-## 🌿 Ramas de trabajo
+## Flujo de trabajo
 
-Cada uno trabaja en su propia rama, creada desde `develop`:
+1. Actualiza tu rama con los últimos cambios de `develop`.
+2. Haz commits pequeños en tu rama y súbelos.
+3. Abre una Pull Request de tu rama a `develop` y rellena la plantilla (Summary, Changes y Notes).
+4. Asígnate la PR y comprueba que **Check conventions** está en verde.
+5. El propietario del repositorio mergea con **Create a merge commit**.
+6. Al terminar el trabajo, una única PR de `develop` a `main`.
 
-| Rama | Persona |
+## Commits y títulos de PR
+
+Se usa [Conventional Commits](https://www.conventionalcommits.org/) en inglés: `tipo(ámbito): descripción en imperativo`. El ámbito es opcional.
+
+| Tipo | Uso |
 |---|---|
-| `feature/pablo` | Pablo |
-| `feature/alvaro` | Álvaro |
+| `feat` | Nueva funcionalidad |
+| `fix` | Corrección de un error |
+| `docs` | Documentación |
+| `style` | Formato, sin cambio de lógica |
+| `refactor` | Reestructurar sin cambiar el comportamiento |
+| `test` | Pruebas |
+| `chore` | Configuración y mantenimiento |
+| `ci` | Automatizaciones (GitHub Actions) |
 
-- Cada uno trabaja **solo en su rama**. Nunca se hacen commits en la rama del otro.
-- GitHub lo bloquea: solo el dueño de cada rama puede subir a ella.
-- Antes de empezar cada tarea, actualiza tu rama con lo último de `develop` (en GitHub Desktop: **Branch → Update from develop**).
-- Cuando termines una tarea, abre una PR de tu rama hacia `develop`. **Una tarea por PR.**
-- Mientras tu PR esté abierta, no subas commits de otra tarea: se añadirían a esa PR. Espera al merge.
-- Tu rama no se borra tras el merge: sigues trabajando en ella.
+Ejemplos: `feat(expenses): add receipt upload`, `docs(readme): update branding paths`.
 
-## ✍️ Commits
+Un propósito por commit y por PR.
 
-[Conventional Commits](https://www.conventionalcommits.org/) en inglés:
+## Comprobación automática
 
-```
-feat(auth): add login form
-fix(expenses): round split amounts to two decimals
-docs(readme): add setup instructions
-```
+La acción **PR checks** revisa cada Pull Request hacia `develop` o `main`:
 
-Commits pequeños: un cambio lógico por commit.
+- Hacia `develop` solo se acepta desde `feature/pablo` o `feature/alvaro`.
+- Hacia `main` solo se acepta desde `develop`.
+- El título de la PR y todos sus commits deben seguir Conventional Commits.
 
-Revisa el mensaje antes de hacer push: GitHub no permite reescribir commits ya subidos.
+## Estilo de archivos
 
-## 🔀 Pull Requests
-
-1. Actualiza tu rama desde `develop`.
-2. Haz tus commits y súbelos (Push).
-3. Abre la PR hacia `develop` con el título en formato Conventional Commits (`feat(auth): add login form`).
-4. Rellena la plantilla (Summary / Changes / Notes).
-5. Revisa **Files changed** antes de pedir revisión.
-6. Tras la revisión, se mergea con **Create a merge commit**.
-
-## 🎨 Diseño
-
-El diseño está en Figma. Antes de cambiar una pantalla respecto al diseño, lo hablamos.
+`.editorconfig` define la codificación, la indentación y el salto de línea final. Todos los archivos terminan con una línea vacía.
